@@ -7,7 +7,7 @@ export default function Page() {
         <button className={style.signInButton}>Login</button>
         <button className={style.signInButton}>Signup</button>
       </div>
-      <h1>Flight Search</h1>
+      <h1 className={style.title}>Flight Search</h1>
       <input
         className={style.searchBar}
         type="text"
