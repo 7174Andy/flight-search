@@ -1,6 +1,9 @@
 .container {
   text-align: center;
   margin-top: 20px;
+  background-color: #f0f8ff;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .topRight {
@@ -13,10 +16,45 @@
   margin: 5px;
   padding: 10px 20px;
   font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .signInButton {
   padding: 10px;
   font-size: 16px;
   margin-right: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signInButton:hover {
+  background-color: #45a049;
+}
+
+.searchButton {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #008cba;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background-color: #007bb5;
+}
+
+.title {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.searchBar::placeholder {
+  color: #888;
 }
