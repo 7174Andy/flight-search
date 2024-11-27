@@ -1,4 +1,5 @@
 import "../styles/global.css";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 
 export const metadata = {
   title: "Flight Search",
@@ -8,7 +9,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+      </body>
     </html>
   );
 }
