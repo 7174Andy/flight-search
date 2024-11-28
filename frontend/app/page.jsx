@@ -5,7 +5,7 @@ import style from "./home.module.css";
 import { useState } from "react";
 
 async function getFlights(departureAirport, arrivalAirport) {
-  const apiKey = "673ee8926d44d8b45223cce0";
+  const apiKey = "6747b36a7b3c2ca47e604ffc";
   const departureDate = "20241201";
 
   const url = `https://api.flightapi.io/trackbyroute/${apiKey}?date=${departureDate}&airport1=${departureAirport}&airport2=${arrivalAirport}`;
@@ -36,12 +36,6 @@ export default function Page() {
   async function searchFlights() {
     if (!departure || !destination) {
       alert("Please enter both departure and destination.");
-      return;
-    }
-
-    const flights = await getFlights(departure, destination);
-    if (flights.length === 0) {
-      alert("No flights found.");
       return;
     }
 
@@ -93,13 +87,13 @@ export default function Page() {
 
       <div className={style.results}>
         {loading ? (
-          <p>Loading flights...</p> // Show loading indicator
+          <p>Loading flights...</p>
         ) : error ? (
-          <p style={{ color: "red" }}>{error}</p> // Show error message
+          <p style={{ color: "red" }}>{error}</p>
         ) : flights.length > 0 ? (
-          <ul>
+          <ul className={style.listContainer}>
             {flights.map((flight, index) => (
-              <li key={index}>
+              <li key={index} className={style.listItem}>
                 {flight.Airline} - {flight.DepartureTime} - {flight.ArrivalTime}
               </li>
             ))}

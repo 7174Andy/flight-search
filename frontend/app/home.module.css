@@ -86,3 +86,21 @@
   list-style-type: none;
   padding: 0;
 }
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.listItem {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
