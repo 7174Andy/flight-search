@@ -81,3 +81,8 @@
   max-height: 50vh; 
   overflow-y: auto; 
 }
+
+.result ul {
+  list-style-type: none;
+  padding: 0;
+}

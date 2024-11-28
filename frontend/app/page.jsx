@@ -30,6 +30,8 @@ export default function Page() {
   const [departure, setDeparture] = useState("");
   const [destination, setDestination] = useState("");
   const [flights, setFlights] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   async function searchFlights() {
     if (!departure || !destination) {
@@ -38,8 +40,27 @@ export default function Page() {
     }
 
     const flights = await getFlights(departure, destination);
-    setFlights(flights);
-    console.log("Flights:", flights);
+    if (flights.length === 0) {
+      alert("No flights found.");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+    setFlights([]);
+
+    try {
+      const flights = await getFlights(departure, destination);
+      if (flights.length === 0) {
+        setError("No flights found.");
+      } else {
+        setFlights(flights);
+      }
+    } catch (err) {
+      setError("An error occurred while fetching flights.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -71,7 +92,11 @@ export default function Page() {
       </button>
 
       <div className={style.results}>
-        {flights.length > 0 ? (
+        {loading ? (
+          <p>Loading flights...</p> // Show loading indicator
+        ) : error ? (
+          <p style={{ color: "red" }}>{error}</p> // Show error message
+        ) : flights.length > 0 ? (
           <ul>
             {flights.map((flight, index) => (
               <li key={index}>
@@ -80,7 +105,7 @@ export default function Page() {
             ))}
           </ul>
         ) : (
-          <p>No flights found. Try a different search.</p>
+          <p>No results yet. Start your search!</p> // Default message
         )}
       </div>
     </div>
