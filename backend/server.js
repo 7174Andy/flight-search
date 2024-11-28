@@ -9,6 +9,18 @@ const uri = process.env.MONGO_DB_URI;
 const typeDefs = gql`
   type Query {
     hello: String
+    allUsers: [User!]!
+  }
+
+  type User {
+    id: ID!
+    name: String!
+    password: String!
+  }
+
+  type Mutation {
+    login(username: String!, password: String!): Token!
+    register(username: String!, password: String!): Token!
   }
 `;
 
@@ -19,6 +31,21 @@ const resolvers = {
 };
 
 const server = new ApolloServer({ typeDefs, resolvers });
+
+// Mongoose Schema
+const userSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+});
+
+const User = mongoose.model("User", userSchema);
 
 mongoose
   .connect(uri, { useNewUrlParser: true })
